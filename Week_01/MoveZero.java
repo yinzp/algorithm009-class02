@@ -6,8 +6,6 @@ public class MoveZero {
 
     public static void main(String[] args) {
         moveZeroes1(test);
-
-
     }
 
     public static void moveZeroes1(int[] nums){
@@ -39,8 +37,5 @@ public class MoveZero {
         }
 
     }
-
-
-
 
 }

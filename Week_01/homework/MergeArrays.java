@@ -14,7 +14,7 @@ public class MergeArrays {
     private static int n = 3;
 
     public static void main(String[] args) {
-        merge2(nums1, m, nums2, n);
+        merge3(nums1, m, nums2, n);
     }
 
     /**
@@ -27,9 +27,11 @@ public class MergeArrays {
      * @param n
      */
     public static void merge1(int[] nums1, int m, int[] nums2, int n) {
-        int len1 = nums1.length;
+        if (m + n > nums1.length) {
+            return;
+        }
         int j = 0;
-        for (int i = m; i < len1; i++) {
+        for (int i = m; i < m+n; i++) {
             nums1[i] = nums2[j];
             j++;
         }
@@ -49,6 +51,25 @@ public class MergeArrays {
         System.arraycopy(nums2, 0, nums1, m, n);
 
         Arrays.sort(nums1);
+        return;
+    }
+
+    /**
+     * 时间复杂度 : O(n + m)。
+     * 空间复杂度 : O(1)
+     * @param nums1
+     * @param m
+     * @param nums2
+     * @param n
+     */
+    public static void merge3(int[] nums1, int m, int[] nums2, int n){
+        int p1 = m - 1;
+        int p2 = n - 1;
+        int p = m + n -1;
+        while (p1 >= 0 && p2 >= 0){
+            nums1[p--] = (nums1[p1] < nums2[p2]) ? nums2[p2--] : nums1[p1--];
+        }
+        System.arraycopy(nums2, 0, nums1, 0, p2 + 1);
         return;
     }
 }
